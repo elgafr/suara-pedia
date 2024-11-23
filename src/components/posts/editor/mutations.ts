@@ -1,5 +1,5 @@
 import { useToast } from "@/hooks/use-toast"
-import { submitPost } from "./action"
+import { submitPost } from "./actions"
 import { InfiniteData, QueryFilters, useMutation, useQueryClient } from "@tanstack/react-query"
 import { PostsPage } from "@/lib/types"
 
@@ -48,7 +48,7 @@ export function useSubmitPostMutation() {
 
         },
         onError(error) {
-            console.error(error),
+            console.error(error);
                 toast({
                     variant: "destructive",
                     description: "Failed to post. Please try again."
