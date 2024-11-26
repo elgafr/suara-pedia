@@ -7,6 +7,7 @@ import { formatRelativeDate } from "@/lib/utils";
 import { useSession } from "@/app/(main)/SessionProvider";
 import PostMoreButton from "./PostMoreButton";
 import Linkify from "../Linkify";
+import UserTooltip from "../UserTooltip";
 
 interface PostProps {
   post: PostData;
@@ -19,18 +20,21 @@ export default function Post({ post }: PostProps) {
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex justify-between gap-3">
         <div className="flex flex-wrap gap-3">
-          <Link href={`/users/${post.user.username}`}>
-            <UserAvatar avatarUrl={post.user.avatarUrl} />
-          </Link>
+          <UserTooltip user={post.user}>
+            <Link href={`/users/${post.user.username}`}>
+              <UserAvatar avatarUrl={post.user.avatarUrl} />
+            </Link>
+          </UserTooltip>
 
           <div>
-            <Link
-              href={`/users/${post.user.username}`}
-              className="block font-medium hover:underline"
-            >
-              {post.user.displayName}
-            </Link>
-
+            <UserTooltip user={post.user}>
+              <Link
+                href={`/users/${post.user.username}`}
+                className="block font-medium hover:underline"
+              >
+                {post.user.displayName}
+              </Link>
+            </UserTooltip>
             <Link
               href={`/posts/${post.id}`}
               className="block text-sm text-muted-foreground hover:underline"
